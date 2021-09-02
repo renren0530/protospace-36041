@@ -1,5 +1,5 @@
 class PrototypesController < ApplicationController
-before_action :authenticate_user!, expect:[:show]
+before_action :authenticate_user!, except:[:show, :index]
 
   def index
     @prototypes = Prototype.all
@@ -44,9 +44,9 @@ before_action :authenticate_user!, expect:[:show]
   end  
 
   def destroy
-    prototype = Prototype.find(params[:id])
-    prototype.delete
-    if prototype.delete
+    @prototype = Prototype.find(params[:id])
+    @prototype.delete
+    if @prototype.delete
       redirect_to root_path      
       else
       render :show
