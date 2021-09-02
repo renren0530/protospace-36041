@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
 
   def create
-    @prototype = Comment.new(comment_params)
+    @prototype = Comment.create(comment_params)
     redirect_to  prototype_path(@prototype.prototype.id)
     
   end
